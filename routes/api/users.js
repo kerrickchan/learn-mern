@@ -5,9 +5,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
+// load validator
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
+// Load models
 const keys = require('../../config/keys')
 const User = require('../../models/User');
 
