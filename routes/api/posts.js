@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = requrie("mongoose");
+const mongoose = require("mongoose");
 const passport = require("passport");
 
 // Load validators
