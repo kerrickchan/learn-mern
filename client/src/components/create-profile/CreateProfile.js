@@ -113,7 +113,7 @@ class CreateProfile extends Component {
                                 <TextFieldGroup placeholder="Github Username" name="githubusername" value={this.state.githubusername} onChange={this.onChange} error={errors.githubusername} info="If you want your latest repos and a Github link, include your username" />
                                 <TextAreaFieldGroup placeholder="Short Bio" name="bio" value={this.state.bio} onChange={this.onChange} error={errors.bio} info="Tell us a little about yourself" />
                                 <div className="mb-3">
-                                    <button className="btn btn-light" onClick={() => {this.setState(preState => ({displaySocialInputs: !preState.displaySocialInputs}))}}>
+                                    <button className="btn btn-light" onClick={() => {this.setState(prevState => ({displaySocialInputs: !prevState.displaySocialInputs}))}}>
                                         Add Social Network Links
                                     </button>
                                     <span className="text-muted">Optional</span>
