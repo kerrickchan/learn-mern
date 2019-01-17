@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import InputGroup from '../common/InputGroup';
+
+import {createProfileAction} from "../../actions/profileActions";
 
 class CreateProfile extends Component {
     constructor(props) {
@@ -14,11 +17,10 @@ class CreateProfile extends Component {
         this.state = {
             displaySocialInputs: false,
             handle: "",
-            options: "",
+            status: "",
             company: "",
             website: "",
             location: "",
-            status: "",
             skills: "",
             githubusername: "",
             bio: "",
@@ -34,6 +36,12 @@ class CreateProfile extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            this.setState({errors: nextProps.errors})
+        }
+    }
+
     onChange(e) {
         this.setState({[e.target.name]: e.target.value})
     }
@@ -41,7 +49,22 @@ class CreateProfile extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log(e)
+        const profileData = {
+            handle: this.state.handle,
+            status: this.state.status,
+            website: this.state.website,
+            location: this.state.location,
+            skills: this.state.skills,
+            githubusername: this.state.githubusername,
+            bio: this.state.bio,
+            twitter: this.state.twitter,
+            facebook: this.state.facebook,
+            linkedin: this.state.linkedin,
+            youtube: this.state.youtube,
+            instagram: this.state.instagram
+        }
+
+        this.props.createProfileAction(profileData, this.props.history);
     }
 
     render() {
@@ -86,7 +109,7 @@ class CreateProfile extends Component {
                                 <SelectListGroup placeholder="Status" name="status" value={this.state.options} options={options} onChange={this.onChange} error={errors.status} info="Give us an idea of where you are at in your career" />
                                 <TextFieldGroup placeholder="Company" name="company" value={this.state.company} onChange={this.onChange} error={errors.company} info="Could be your own company or one you work for" />
                                 <TextFieldGroup placeholder="Location" name="location" value={this.state.location} onChange={this.onChange} error={errors.location} info="City or city & state suggested (eg. Boston, MA)" />
-                                <TextFieldGroup placeholder="* Skills" name="skills" value={this.state.skills} onChange={this.onChange} error={errors.skills} info="Please use comma separated values (eg. HTML,CSS,JavaSScript,PHP)" />
+                                <TextFieldGroup placeholder="* Skills" name="skills" value={this.state.skills} onChange={this.onChange} error={errors.skills} info="Please use comma separated values (eg. HTML,CSS,Javascript,PHP)" />
                                 <TextFieldGroup placeholder="Github Username" name="githubusername" value={this.state.githubusername} onChange={this.onChange} error={errors.githubusername} info="If you want your latest repos and a Github link, include your username" />
                                 <TextAreaFieldGroup placeholder="Short Bio" name="bio" value={this.state.bio} onChange={this.onChange} error={errors.bio} info="Tell us a little about yourself" />
                                 <div className="mb-3">
@@ -118,4 +141,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(CreateProfile);
+export default connect(mapStateToProps, {createProfileAction})(withRouter(CreateProfile));
