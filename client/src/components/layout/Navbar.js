@@ -19,10 +19,10 @@ class Navbar extends React.Component {
         const authLinks = (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                    <a href="#" onClick={this.onLogoutClick.bind(this)}>
+                    <button onClick={this.onLogoutClick.bind(this)}>
                         <img className="rounded-circle" src={user.avatar} alt={user.name} title="You must have a Gravatar connected to your email to display an image" style={{width: "25px", height: "25px"}} />
                         {" "}Logout
-                    </a>
+                    </button>
                 </li>
             </ul>
         );

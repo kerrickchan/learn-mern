@@ -28,10 +28,10 @@ export const setProfileLoading = () => {
 }
 
 // Create profile
-export const createProfileAction = ({profileData, history}) => (dispatch) => {
+export const createProfileAction = (profileData, history) => (dispatch) => {
     axios.post("/api/profile", profileData)
-            .then(res => history.pushState("/dashboard"))
-            .catch(err => 
+            .then(res => history.push("/dashboard"))
+            .catch(err =>
                 dispatch({
                     type: GET_ERRORS,
                     payload: err.response.data
