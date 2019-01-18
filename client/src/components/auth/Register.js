@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {registerUser} from '../../actions/authActions';
+import {registerUserAction} from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
 
 class Register extends Component {
@@ -46,7 +46,7 @@ class Register extends Component {
             password: this.state.password,
             password2: this.state.password2
         }
-        this.props.registerUser(newUser, this.props.history);
+        this.props.registerUserAction(newUser, this.props.history);
     }
 
     render() {
@@ -104,7 +104,7 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-    registerUser: PropTypes.func.isRequired,
+    registerUserAction: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 }
@@ -116,4 +116,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {registerUser})(Register);
+export default connect(mapStateToProps, {registerUserAction})(Register);
