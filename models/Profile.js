@@ -9,13 +9,12 @@ const ProfileSchema = new Schema({
         required: true,
         max: 40
     },
-    company: {type: String},
-    website: {type: String},
-    location: {type: String},
     status: {type: String, required: true},
+    company: {type: String},
+    location: {type: String},
     skills: {type: [String], required: true},
     bio: {type: String},
-    githubusername: {type: String},
+    website: {type: String},
     experience: [
         {
             title: {type: String, required: true},
@@ -39,11 +38,12 @@ const ProfileSchema = new Schema({
         }
     ],
     social: {
-        youtube: {type: String},
+        github: {type: String},
         twitter: {type: String},
         facebook: {type: String},
-        linkin: {type: String},
+        linkedin: {type: String},
         instagram: {type: String},
+        youtube: {type: String}
     },
     date: {type: Date, default: Date.now}
 });

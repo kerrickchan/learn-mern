@@ -8,6 +8,7 @@ import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 import SelectListGroup from '../common/SelectListGroup';
 import InputGroup from '../common/InputGroup';
 
+import isEmpty from '../../validation/is-empty';
 import {createProfileAction, getCurrentProfileAction} from "../../actions/profileActions";
 
 class EditProfile extends Component {
@@ -43,6 +44,42 @@ class EditProfile extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({errors: nextProps.errors})
+        }
+
+        if(nextProps.profile.profile) {
+            const profile = nextProps.profile.profile;
+
+            // Bring skills aray back to CSV
+            const skillsCSV = profile.skills.join(",");
+
+            // if profile field doesn't exist, make empty string
+            profile.company = !isEmpty(profile.company) ? profile.company : "";
+            profile.website = !isEmpty(profile.website) ? profile.website : "";
+            profile.location = !isEmpty(profile.location) ? profile.location : "";
+            profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : "";
+            profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
+            profile.social = !isEmpty(profile.social) ? profile.social : {};
+            profile.twitter = !isEmpty(profile.twitter) ? profile.twitter : "";
+            profile.facebook = !isEmpty(profile.facebook) ? profile.facebook : "";
+            profile.linkedin = !isEmpty(profile.linkedin) ? profile.linkedin : "";
+            profile.youtube = !isEmpty(profile.youtube) ? profile.youtube : "";
+            profile.instagram = !isEmpty(profile.instagram) ? profile.instagram : "";
+
+            // Set component fields state
+            this.setState({
+                handle: profile.handle,
+                status: profile.status,
+                company: profile.company,
+                website: profile.website,
+                skills: skillsCSV,
+                githubusername: profile.githubusername,
+                bio: profile.bio,
+                twitter: profile.twitter,
+                facebook: profile.facebook,
+                linkedin: profile.linkedin,
+                youtube: profile.youtube,
+                instagram: profile.instagram
+            });
         }
     }
 
@@ -105,8 +142,8 @@ class EditProfile extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Create Your Profile</h1>
-                            <p className="lead text-center">Let's Get some information to make your profile stand out</p>
+                            <h1 className="display-4 text-center">Edit Profile</h1>
+                            <p className="lead text-center">Let's get some information to make your profile stand out</p>
                             <small className="d-block pb-3">* = required fields</small>
                             <form onSubmit={this.onSubmit}>
                                 <TextFieldGroup placeholder="* Profile Handle" name="handle" value={this.state.handle} onChange={this.onChange} error={errors.handle} info="A unique handle for your profile URL. Your full name, company name, nickname" />
@@ -136,7 +173,7 @@ class EditProfile extends Component {
 EditProfile.propTypes = {
     getCurrentProfileAction: PropTypes.func.isRequired,
     createProfileAction: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired,
+    profile: PropTypes.object,
     errors: PropTypes.object.isRequired
 }
 

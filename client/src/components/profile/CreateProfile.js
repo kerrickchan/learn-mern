@@ -52,11 +52,11 @@ class CreateProfile extends Component {
         const profileData = {
             handle: this.state.handle,
             status: this.state.status,
-            website: this.state.website,
             location: this.state.location,
             skills: this.state.skills,
-            githubusername: this.state.githubusername,
             bio: this.state.bio,
+            website: this.state.website,
+            github: this.state.githubusername,
             twitter: this.state.twitter,
             facebook: this.state.facebook,
             linkedin: this.state.linkedin,
@@ -102,7 +102,7 @@ class CreateProfile extends Component {
                     <div className="row">
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">Create Your Profile</h1>
-                            <p className="lead text-center">Let's Get some information to make your profile stand out</p>
+                            <p className="lead text-center">Let's get some information to make your profile stand out</p>
                             <small className="d-block pb-3">* = required fields</small>
                             <form onSubmit={this.onSubmit}>
                                 <TextFieldGroup placeholder="* Profile Handle" name="handle" value={this.state.handle} onChange={this.onChange} error={errors.handle} info="A unique handle for your profile URL. Your full name, company name, nickname" />
@@ -131,8 +131,8 @@ class CreateProfile extends Component {
 
 CreateProfile.propTypes = {
     createProfileAction: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    profile: PropTypes.object,
+    errors: PropTypes.object
 }
 
 const mapStateToProps = (state) => {
