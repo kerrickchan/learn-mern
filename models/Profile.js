@@ -10,11 +10,19 @@ const ProfileSchema = new Schema({
         max: 40
     },
     status: {type: String, required: true},
+    skills: {type: [String], required: true},
     company: {type: String},
     location: {type: String},
-    skills: {type: [String], required: true},
     bio: {type: String},
     website: {type: String},
+    social: {
+        github: {type: String},
+        twitter: {type: String},
+        facebook: {type: String},
+        linkedin: {type: String},
+        instagram: {type: String},
+        youtube: {type: String}
+    },
     experience: [
         {
             title: {type: String, required: true},
@@ -37,14 +45,6 @@ const ProfileSchema = new Schema({
             description: {type: String}
         }
     ],
-    social: {
-        github: {type: String},
-        twitter: {type: String},
-        facebook: {type: String},
-        linkedin: {type: String},
-        instagram: {type: String},
-        youtube: {type: String}
-    },
     date: {type: Date, default: Date.now}
 });
 

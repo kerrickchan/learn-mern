@@ -30,9 +30,9 @@ module.exports = function validateProfileInput(data) {
         }
     }
 
-    if(!isEmpty(data.youtube)) {
-        if(!Validator.isURL(data.youtube)) {
-            errors.youtube = "Not a valid URL";
+    if(!isEmpty(data.github)) {
+        if(!Validator.isURL(data.github)) {
+            errors.github = "Not a valid URL";
         }
     }
 
@@ -48,15 +48,21 @@ module.exports = function validateProfileInput(data) {
         }
     }
 
-    if(!isEmpty(data.linkin)) {
+    if(!isEmpty(data.linkedin)) {
         if(!Validator.isURL(data.linkin)) {
-            errors.linkin = "Not a valid URL";
+            errors.linkedin = "Not a valid URL";
         }
     }
 
     if(!isEmpty(data.instagram)) {
         if(!Validator.isURL(data.instagram)) {
             errors.instagram = "Not a valid URL";
+        }
+    }
+
+    if(!isEmpty(data.youtube)) {
+        if(!Validator.isURL(data.youtube)) {
+            errors.youtube = "Not a valid URL";
         }
     }
 
