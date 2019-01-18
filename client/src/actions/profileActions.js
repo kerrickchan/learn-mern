@@ -1,9 +1,17 @@
 import axios from 'axios';
 
-import {GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_USER, GET_ERRORS} from './types';
+import {PROFILE_LOADING, GET_PROFILE, CLEAR_CURRENT_USER, GET_ERRORS} from './types';
+
+
+// Profile loading
+export const setProfileLoading = () => {
+    return {
+        type: PROFILE_LOADING
+    }
+}
 
 // Get current profile
-export const getCurrentProfile = () => (dispatch) => {
+export const getCurrentProfileAction = () => (dispatch) => {
     dispatch(setProfileLoading());
     axios.get('/api/profile')
         .then(res =>
@@ -20,10 +28,10 @@ export const getCurrentProfile = () => (dispatch) => {
         )
 }
 
-// Profile loading
-export const setProfileLoading = () => {
+// Clear profile
+export const clearCurrentProfileAction = () => {
     return {
-        type: PROFILE_LOADING
+        type: CLEAR_CURRENT_USER
     }
 }
 
@@ -39,9 +47,7 @@ export const createProfileAction = (profileData, history) => (dispatch) => {
             )
 }
 
-// Clear profile
-export const clearCurrentProfile = () => {
-    return {
-        type: CLEAR_CURRENT_USER
-    }
+// Delete profile
+export const deleteAccountAction = () => {
+
 }
