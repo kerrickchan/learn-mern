@@ -144,29 +144,29 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
         if (req.body.youtube) { profileFields.social.youtube = req.body.youtube; }
 
         Profile.findOne({user: req.user.id})
-            .populate("user", ["name", "avatar"])
-            .then(profile => {
-                if (profile) { // Update
-                    Profile.findOneAndUpdate(
-                        {user: req.user.id},
-                        {$set: profileFields},
-                        {new: true}
-                    )
-                    .then(profile => res.json(profile));
-                } else { // Create
-                    // check if handle exists
-                    Profile.findOne({handle: profileFields.handle})
-                    .then(profile => {
-                        if (profile) {
-                            errors.handle = "That handle alreadys exists";
-                            res.status(400).json(errors);
-                        }
-                    })
+                .populate("user", ["name", "avatar"])
+                .then(profile => {
+                    if (profile) { // Update
+                        Profile.findOneAndUpdate(
+                            {user: req.user.id},
+                            {$set: profileFields},
+                            {new: true}
+                        )
+                        .then(profile => res.json(profile));
+                    } else { // Create
+                        // check if handle exists
+                        Profile.findOne({handle: profileFields.handle})
+                                .then(profile => {
+                                    if (profile) {
+                                        errors.handle = "That handle alreadys exists";
+                                        res.status(400).json(errors);
+                                    }
+                                })
 
-                    // Save profile
-                    new Profile(profileFields).save().then(res.json(profile));
-                }
-            })
+                        // Save profile
+                        new Profile(profileFields).save().then(res.json(profile));
+                    }
+                })
     }
 );
 
