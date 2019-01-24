@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
 
+import {addExperienceAction} from '../../actions/profileActions'
+
 class AddExperience extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +43,17 @@ class AddExperience extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log("submit");
+        const expData = {
+            company: this.state.company,
+            title: this.state.title,
+            location: this.state.location,
+            from: this.state.from,
+            to: this.state.to,
+            current: this.state.current,
+            description: this.state.description
+        }
+
+        this.props.addExperienceAction(expData, this.props.history);
     }
 
     render() {
@@ -61,7 +73,7 @@ class AddExperience extends Component {
                             <form onSubmit={this.onSubmit}>
                                 <TextFieldGroup placeholder="Job Title*" name="title" value={this.state.title} onChange={this.onChange} error={errors.title} />
                                 <TextFieldGroup placeholder="Company*" name="company" value={this.state.company} onChange={this.onChange} error={errors.company} />
-                                <TextFieldGroup placeholder="Location*" name="location" value={this.state.location} onChange={this.onChange} error={errors.location} />
+                                <TextFieldGroup placeholder="Location" name="location" value={this.state.location} onChange={this.onChange} error={errors.location} />
                                 <h6>From Date</h6>
                                 <TextFieldGroup type="date" name="from" value={this.state.from} onChange={this.onChange} error={errors.from} />
                                 <h6>To Date</h6>
@@ -84,6 +96,7 @@ class AddExperience extends Component {
 }
 
 AddExperience.propTypes = {
+    addExperienceAction: PropTypes.func.isRequired,
     profile: PropTypes.object,
     errors: PropTypes.object
 }
@@ -95,4 +108,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AddExperience);
+export default connect(mapStateToProps, {addExperienceAction})(AddExperience);

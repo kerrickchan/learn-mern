@@ -53,6 +53,18 @@ export const createProfileAction = (profileData, history) => (dispatch) => {
             )
 }
 
+// Add experience
+export const addExperienceAction = (expData, history) => (dispatch) => {
+    axios.post('/api/profile/experience', expData)
+            .then(res => history.push("/dashboard"))
+            .catch(err =>
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                })
+            )
+}
+
 // Delete profile
 export const deleteAccountAction = () => (dispatch) => {
     if(window.confirm('Are you sure? This can NOT be undone!')) {
