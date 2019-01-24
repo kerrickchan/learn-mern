@@ -31,9 +31,9 @@ class EditProfile extends Component {
 
             // Set component fields state
             this.form.setState({
-                handle: profile.handle,
-                status: profile.status,
-                skills: profile.skills.join(","),
+                handle: !isEmpty(profile.handle) ? profile.handle : "",
+                status: !isEmpty(profile.status) ? profile.status : "",
+                skills: !isEmpty(profile.skills) ? profile.skills.join(",") : "",
                 company: !isEmpty(profile.company) ? profile.company : "",
                 location: !isEmpty(profile.location) ? profile.location : "",
                 bio: !isEmpty(profile.bio) ? profile.bio : "",
