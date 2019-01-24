@@ -14,7 +14,11 @@ class CreateProfile extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
-            this.form.setState({errors: nextProps.errors})
+            if (nextProps.errors === "Unauthorized") {
+                this.history.push("/login");
+            } else {
+                this.form.setState({errors: nextProps.errors});
+            }
         }
     }
 
