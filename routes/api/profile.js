@@ -136,7 +136,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
 
         // Social
         profileFields.social = {};
-        if (req.body.github) { profileFields.github = req.body.github; }
+        if (req.body.github) { profileFields.social.github = req.body.github; }
         if (req.body.twitter) { profileFields.social.twitter = req.body.twitter; }
         if (req.body.facebook) { profileFields.social.facebook = req.body.facebook; }
         if (req.body.linkedin) { profileFields.social.linkedin = req.body.linkedin; }

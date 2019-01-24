@@ -35,12 +35,12 @@ class EditProfile extends Component {
                 bio: !isEmpty(profile.bio) ? profile.bio : "",
                 website: !isEmpty(profile.website) ? profile.website : "",
                 displaySocialInput: !isEmpty(profile.social) ? true : false,
-                github: !isEmpty(profile.github) ? profile.github : "",
-                twitter: !isEmpty(profile.twitter) ? profile.twitter : "",
-                facebook: !isEmpty(profile.facebook) ? profile.facebook : "",
-                linkedin: !isEmpty(profile.linkedin) ? profile.linkedin : "",
-                instagram: !isEmpty(profile.instagram) ? profile.instagram : "",
-                youtube: !isEmpty(profile.youtube) ? profile.youtube : ""
+                github: !isEmpty(profile.social.github) ? profile.social.github : "",
+                twitter: !isEmpty(profile.social.twitter) ? profile.social.twitter : "",
+                facebook: !isEmpty(profile.social.facebook) ? profile.social.facebook : "",
+                linkedin: !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "",
+                instagram: !isEmpty(profile.social.instagram) ? profile.social.instagram : "",
+                youtube: !isEmpty(profile.social.youtube) ? profile.social.youtube : ""
             });
         }
     }
