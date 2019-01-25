@@ -29,6 +29,16 @@ class AddExperience extends Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.errors) {
+            if (nextProps.errors === "Unauthorized") {
+                this.history.push("/login");
+            } else {
+                this.setState({errors: nextProps.errors});
+            }
+        }
+    }
+
     onChange(e) {
         this.setState({[e.target.name]: e.target.value})
     }
@@ -74,7 +84,7 @@ class AddExperience extends Component {
                                 <TextFieldGroup placeholder="Job Title*" name="title" value={this.state.title} onChange={this.onChange} error={errors.title} />
                                 <TextFieldGroup placeholder="Company*" name="company" value={this.state.company} onChange={this.onChange} error={errors.company} />
                                 <TextFieldGroup placeholder="Location" name="location" value={this.state.location} onChange={this.onChange} error={errors.location} />
-                                <h6>From Date</h6>
+                                <h6>From Date*</h6>
                                 <TextFieldGroup type="date" name="from" value={this.state.from} onChange={this.onChange} error={errors.from} />
                                 <h6>To Date</h6>
                                 <TextFieldGroup type="date" name="to" value={this.state.to} onChange={this.onChange} error={errors.to} disabled={this.state.disabled ? "disabled" : ""}/>
