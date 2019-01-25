@@ -118,9 +118,9 @@ class ProfileForm extends Component {
 
 ProfileForm.propTypes = {
     displaySocialInput: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     profile: PropTypes.object,
-    errors: PropTypes.object,
-    onSubmit: PropTypes.func,
+    errors: PropTypes.object
 }
 
 ProfileForm.defaultProps = {
