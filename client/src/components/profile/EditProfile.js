@@ -20,7 +20,7 @@ class EditProfile extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             if (nextProps.errors === "Unauthorized") {
-                this.history.push("/login");
+                this.props.history.push("/login");
             } else {
                 this.form.setState({errors: nextProps.errors});
             }
