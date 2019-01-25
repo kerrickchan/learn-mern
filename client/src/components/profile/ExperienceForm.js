@@ -52,10 +52,6 @@ class ExperienceForm extends React.Component {
         this.props.onSubmit(expData);
     }
 
-    setData(experienceData){
-        this.setState({...experienceData})
-    }
-
     render() {
         const {errors} = this.state;
 
