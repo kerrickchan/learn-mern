@@ -65,6 +65,18 @@ export const addExperienceAction = (expData, history) => (dispatch) => {
             )
 }
 
+// Add education
+export const addEducationAction = (eduData, history) => (dispatch) => {
+    axios.post('/api/profile/education')
+            .then(res => history.push("/dashboard"))
+            .catch(err =>
+                dispatch({
+                    type: GET_ERRORS,
+                    payload: err.response.data
+                })
+            )
+}
+
 // Delete profile
 export const deleteAccountAction = () => (dispatch) => {
     if(window.confirm('Are you sure? This can NOT be undone!')) {
