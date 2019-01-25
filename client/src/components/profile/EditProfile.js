@@ -29,23 +29,28 @@ class EditProfile extends Component {
         if(nextProps.profile.profile) {
             const profile = nextProps.profile.profile;
 
-            // Set component fields state
-            this.form.setState({
+            const profileData = {
                 handle: !isEmpty(profile.handle) ? profile.handle : "",
                 status: !isEmpty(profile.status) ? profile.status : "",
-                skills: !isEmpty(profile.skills) ? profile.skills.join(",") : "",
+                skills: !isEmpty(profile.skills) ? profile.skills.join(", ") : "",
                 company: !isEmpty(profile.company) ? profile.company : "",
                 location: !isEmpty(profile.location) ? profile.location : "",
                 bio: !isEmpty(profile.bio) ? profile.bio : "",
-                website: !isEmpty(profile.website) ? profile.website : "",
-                displaySocialInput: !isEmpty(profile.social) ? true : false,
-                github: !isEmpty(profile.social.github) ? profile.social.github : "",
-                twitter: !isEmpty(profile.social.twitter) ? profile.social.twitter : "",
-                facebook: !isEmpty(profile.social.facebook) ? profile.social.facebook : "",
-                linkedin: !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "",
-                instagram: !isEmpty(profile.social.instagram) ? profile.social.instagram : "",
-                youtube: !isEmpty(profile.social.youtube) ? profile.social.youtube : ""
-            });
+                website: !isEmpty(profile.website) ? profile.website : ""
+            };
+
+            if (!isEmpty(profile.social)) {
+                profileData.displaySocialInput = true
+                profileData.github = !isEmpty(profile.social.github) ? profile.social.github : "";
+                profileData.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : "";
+                profileData.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : "";
+                profileData.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : "";
+                profileData.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : "";
+                profileData.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : "";
+            }
+
+            // Set component fields state
+            this.form.setState(profileData);
         }
     }
 
