@@ -9,9 +9,9 @@ class EducationForm extends React.Component {
         super(props);
 
         this.state = {
-            title: "",
-            company: "",
-            location: "",
+            school: "",
+            degree: "",
+            fieldofstudy: "",
             from: "",
             to: "",
             current: false,
