@@ -20,23 +20,23 @@ class EducationForm extends React.Component {
             disabled: false
         }
 
-        this.onChange = this.onChange.bind(this);
-        this.onCheck = this.onCheck.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    onChange(e) {
+    handleChange(e) {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    onCheck(e) {
+    handleCheck(e) {
         this.setState({
             disabled: !this.state.disabled,
             current: !this.state.current
         })
     }
 
-    onSubmit(e) {
+    handleSubmit(e) {
         e.preventDefault();
 
         const eduData = {
@@ -56,21 +56,21 @@ class EducationForm extends React.Component {
         const {errors} = this.state;
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <TextFieldGroup placeholder="School*" name="school" value={this.state.school} onChange={this.onChange} error={errors.school} />
-                <TextFieldGroup placeholder="Degree*" name="degree" value={this.state.degree} onChange={this.onChange} error={errors.degree} />
-                <TextFieldGroup placeholder="Field of Study*" name="fieldofstudy" value={this.state.fieldofstudy} onChange={this.onChange} error={errors.fieldofstudy} />
+            <form onSubmit={this.handleSubmit}>
+                <TextFieldGroup placeholder="School*" name="school" value={this.state.school} onChange={this.handleChange} error={errors.school} />
+                <TextFieldGroup placeholder="Degree*" name="degree" value={this.state.degree} onChange={this.handleChange} error={errors.degree} />
+                <TextFieldGroup placeholder="Field of Study*" name="fieldofstudy" value={this.state.fieldofstudy} onChange={this.handleChange} error={errors.fieldofstudy} />
                 <h6>From Date*</h6>
-                <TextFieldGroup type="date" name="from" value={this.state.from} onChange={this.onChange} error={errors.from} />
+                <TextFieldGroup type="date" name="from" value={this.state.from} onChange={this.handleChange} error={errors.from} />
                 <h6>To Date</h6>
-                <TextFieldGroup type="date" name="to" value={this.state.to} onChange={this.onChange} error={errors.to} disabled={this.state.disabled ? "disabled" : ""}/>
+                <TextFieldGroup type="date" name="to" value={this.state.to} onChange={this.handleChange} error={errors.to} disabled={this.state.disabled ? "disabled" : ""}/>
                 <div className="form-check mb-4">
-                    <input type="checkbox" className="form-check-input" id="current" name="current" value={this.state.current} checked={this.state.current} onChange={this.onCheck} />
+                    <input type="checkbox" className="form-check-input" id="current" name="current" value={this.state.current} checked={this.state.current} onChange={this.handleCheck} />
                     <label htmlFor="current" className="form-check-label">
                         Current Study
                     </label>
                 </div>
-                <TextAreaFieldGroup placeholder="Study Description" name="description" value={this.state.description} onChange={this.onChange} info="Tell us about the position" error={errors.description} />
+                <TextAreaFieldGroup placeholder="Study Description" name="description" value={this.state.description} onChange={this.handleChange} info="Tell us about the position" error={errors.description} />
                 <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
             </form>
         )
