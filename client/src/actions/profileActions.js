@@ -84,7 +84,7 @@ export const deleteExperienceAction = (id) => (dispatch) => {
 
 // Add education
 export const addEducationAction = (eduData, history) => (dispatch) => {
-    axios.post('/api/profile/education')
+    axios.post('/api/profile/education', eduData)
             .then(res => history.push("/dashboard"))
             .catch(err =>
                 dispatch({
