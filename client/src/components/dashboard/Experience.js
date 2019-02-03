@@ -42,7 +42,7 @@ class Experience extends Component {
 }
 
 Experience.propTypes = {
-    experiences: PropTypes.array.isRequired,
+    experiences: PropTypes.array,
     deleteExperienceAction: PropTypes.func.isRequired
 }
 
