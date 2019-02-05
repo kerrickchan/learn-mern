@@ -5,9 +5,9 @@ import {
     GET_PROFILE,
     CLEAR_CURRENT_USER,
     GET_ERRORS,
-    SET_CURRENT_USER
+    SET_CURRENT_USER,
+    GET_PROFILES
 } from './types';
-
 
 // Profile loading
 export const setProfileLoading = () => {
@@ -94,6 +94,7 @@ export const addEducationAction = (eduData, history) => (dispatch) => {
             )
 }
 
+// Delete education
 export const deleteEducationAction = (id) => (dispatch) => {
     axios.delete(`/api/profile/education/${id}`)
             .then(res =>
@@ -126,4 +127,22 @@ export const deleteAccountAction = () => (dispatch) => {
                     })
                 )
     }
+}
+
+// Get all profiles
+export const getProfiles = () => (dispatch) => {
+    dispatch(setProfileLoading());
+    axios.get('/api/profile/all')
+         .then(res =>
+            dispatch({
+                type: GET_PROFILES,
+                payload: res.data
+            })
+         )
+         .catch(err =>
+            dispatch({
+                type: GET_PROFILES,
+                paylod: err.response.data
+            })
+         )
 }
