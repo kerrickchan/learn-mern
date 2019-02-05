@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 import ProfileHeader from './ProfileHeader'
 import ProfileAbout from './ProfileAbout'
 import ProfileCreds from './ProfileCreds'
-// import ProfileGithub from './ProfileGithub'
+import ProfileGithub from './ProfileGithub'
 
 import Spinner from '../common/Spinner'
 import {getProfileByHandleAction} from '../../actions/profileActions'
@@ -28,7 +28,7 @@ class Profile extends Component {
         <ProfileHeader />
         <ProfileAbout />
         <ProfileCreds />
-        {/* <ProfileGithub /> */}
+        <ProfileGithub />
       </div>
     )
   }
