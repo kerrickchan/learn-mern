@@ -40,9 +40,9 @@ class Profile extends Component {
           </div>
           <div className="col-md-6"></div>
           <ProfileHeader profile={profile} />
-          <ProfileAbout />
-          <ProfileCreds />
-          <ProfileGithub />
+          <ProfileAbout profile={profile} />
+          <ProfileCreds experience={profile.experience} education={profile.education} />
+          {profile.social && profile.social.github ? (<ProfileGithub username={profile.social.github} />) : null}
         </div>
       )
     }
