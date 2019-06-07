@@ -49,7 +49,7 @@ module.exports = function validateProfileInput(data) {
     }
 
     if(!isEmpty(data.linkedin)) {
-        if(!Validator.isURL(data.linkin)) {
+        if(!Validator.isURL(data.linkedin)) {
             errors.linkedin = "Not a valid URL";
         }
     }
