@@ -22,6 +22,7 @@ import AddExperience from './components/profile/AddExperience';
 import AddEducation from './components/profile/AddEducation';
 import Profiles from './components/profiles/Profile';
 import Profile from './components/profile/Profile';
+import Posts from './components/posts/Posts';
 
 import './App.css';
 
@@ -55,24 +56,17 @@ class App extends Component {
             <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/profile/:handle" component={Profile} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/add-experience" component={AddExperience} />
-              </Switch>
-              <Switch>
                 <PrivateRoute exact path="/add-education" component={AddEducation} />
+                <PrivateRoute exact path="/posts" component={Posts} />
               </Switch>
             </div>
             <Footer />

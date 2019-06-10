@@ -5,3 +5,5 @@ export const PROFILE_LOADING = "PROFILE_LOADING";
 export const PROFILE_NOT_FOUND = "PROFILE_NOT_FOUND";
 export const CLEAR_CURRENT_USER = "CLEAR_CURRENT_USER";
 export const GET_PROFILES = "GET_PROFILES";
+export const GET_POSTS = "GET_POSTS";
+export const POST_ERROR = "POST_ERROR";

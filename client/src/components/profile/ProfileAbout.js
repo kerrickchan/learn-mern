@@ -11,7 +11,7 @@ class ProfileAbout extends Component {
   render() {
     const {profile} = this.props;
 
-    const firstname = profile && profile.user.name.trim().split(' ')[0];
+    const firstname = profile && profile.user && profile.user.name && profile.user.name.trim().split(' ')[0];
 
     const skills = profile.skills.map((skill, index) => (
       <div key={index} className="p-3">
