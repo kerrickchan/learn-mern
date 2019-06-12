@@ -56,7 +56,7 @@ router.post("/", passport.authenticate("jwt", {session: false}), (req, res) => {
     const newPost = new Post({
         text: req.body.text,
         name: req.body.name,
-        avatar: req.body.name,
+        avatar: req.body.avatar,
         user: req.user.id
     })
 
@@ -161,7 +161,6 @@ router.post("/comment/:id", passport.authenticate("jwt", {session: false}), (req
         })
         .catch(err => res.status(404).json({postnotfound: "No post found"}));
 });
-
 
 /**
  * @route   Post api/posts/comment/:id/:comment_id

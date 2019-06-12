@@ -1,13 +1,13 @@
 {
   "name": "mern",
-  "version": "0.10.59",
+  "version": "0.10.62",
   "description": "Basic social network",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "client-install": "npm install --prefix ../client",
     "start": "node server.js",
     "server": "nodemon server.js",
-    "client": "npm start --prefix client",
+    "client": "npm start --prefix ../client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

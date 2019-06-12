@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -14,61 +14,55 @@ class Navbar extends React.Component {
     }
 
     render() {
-        const {isAuthenticated, user} = this.props.auth;
+        const {isAuthenticated, user, loading} = this.props.auth;
 
         const authLinks = (
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/posts">Posts</Link>
+            <ul>
+                <li>
+                    <Link to="/posts">Posts</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                    <Link to="/dashboard">Dashboard</Link>
                 </li>
-                <li className="nav-item">
+                <li>
                     <button onClick={this.onLogoutClick.bind(this)}>
                         <img className="rounded-circle" src={user.avatar} alt={user.name} title="You must have a Gravatar connected to your email to display an image" style={{width: "25px", height: "25px"}} />
-                        {" "}Logout
+                        <span class="hide-sm">Logout</span>
                     </button>
                 </li>
             </ul>
-        );
+        )
 
         const guestLinks = (
-            <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/register">Sign Up</Link>
+            <ul>
+                <li>
+                    <Link to="/register">Sign Up</Link>
                 </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/login">Login</Link>
+                <li>
+                    <Link to="/login">Login</Link>
                 </li>
             </ul>
-        );
+        )
 
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
-                <div className="container">
-                <Link className="navbar-brand" to="/">DevConnector</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-
-                <div className="collapse navbar-collapse" id="mobile-nav">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/profiles">Developers</Link>
-                        </li>
-                    </ul>
-                    {isAuthenticated ? authLinks : guestLinks}
-                </div>
-                </div>
+            <nav className='navbar bg-dark'>
+              <h1>
+                <Link to='/'>
+                  <i className='fas fa-code' /> DevConnector
+                </Link>
+              </h1>
+              {!loading && (
+                <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
+              )}
             </nav>
         )
     }
 }
 
 Navbar.propTypes = {
+    auth: PropTypes.object.isRequired,
     logoutUserAction: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired
+    clearCurrentProfileAction: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
