@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -30,29 +30,28 @@ class Profile extends Component {
       profileContent = <Spinner />
     } else {
       profileContent = (
-        <div>
+        <Fragment>
           <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
-                Back to profiles
-              </Link>
+            <div className="col-md-12">
+              <ProfileHeader profile={profile} />
+              <ProfileAbout profile={profile} />
+              <ProfileCreds experience={profile.experience} education={profile.education} />
+              {profile.social && profile.social.github ? (<ProfileGithub username={profile.social.github} />) : null}
             </div>
           </div>
-          <div className="col-md-6"></div>
-          <ProfileHeader profile={profile} />
-          <ProfileAbout profile={profile} />
-          <ProfileCreds experience={profile.experience} education={profile.education} />
-          {profile.social && profile.social.github ? (<ProfileGithub username={profile.social.github} />) : null}
-        </div>
+        </Fragment>
       )
     }
 
     return (
       <div className="profile">
         <div className="container">
-          <div className="col-md-12">
-            {profileContent}
+          <div className="row">
+            <Link to="/profiles" className="btn btn-light mb-3 float-left">
+              Back to profiles
+            </Link>
           </div>
+          {profileContent}
         </div>
       </div>
     )

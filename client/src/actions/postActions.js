@@ -2,7 +2,6 @@ import axios from 'axios';
 import {
   GET_POSTS,
   POST_ERROR,
-  GET_ERRORS,
   UPDATE_LIKES
 } from './types';
 
@@ -17,7 +16,7 @@ export const getPostsAction = () => async dispatch => {
     })
   } catch(err) {
     dispatch({
-      type: GET_ERRORS,
+      type: POST_ERROR,
       payload: {msg: err.response.statusText, status: err.response.status}
     })
   }
@@ -34,7 +33,7 @@ export const addLikeAction = (postId) => async dispatch => {
     })
   } catch(err) {
     dispatch({
-      type: GET_ERRORS,
+      type: POST_ERROR,
       payload: {msg: err.response.statusText, status: err.response.status}
     })
   }
@@ -51,7 +50,7 @@ export const removeLikeAction = (postId) => async dispatch => {
     })
   } catch(err) {
     dispatch({
-      type: GET_ERRORS,
+      type: POST_ERROR,
       payload: {msg: err.response.statusText, status: err.response.status}
     })
   }

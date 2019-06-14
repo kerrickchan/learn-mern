@@ -21,8 +21,8 @@ class Navbar extends React.Component {
                 <li>
                     <Link to="/posts">Posts</Link>
                 </li>
-                <li className="nav-item">
-                    <Link to="/dashboard">Dashboard</Link>
+                <li>
+                    <Link to="/profiles">Profiles</Link>
                 </li>
                 <li>
                     <button onClick={this.onLogoutClick.bind(this)}>
